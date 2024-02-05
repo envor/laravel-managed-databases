@@ -23,4 +23,10 @@ class ManagedDatabasesServiceProvider extends PackageServiceProvider
             ->runsMigrations(/** todo: ignore option */)
             ->hasCommand(ManagedDatabasesCommand::class);
     }
+
+    public function packageRegistered()
+    {
+        ManagedDatabases::configureManagedConnections();
+        ManagedDatabases::configureSystemConnections();
+    }
 }

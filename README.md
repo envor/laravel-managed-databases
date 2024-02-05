@@ -40,7 +40,7 @@ $manager = User::first();
 
 $managedDatabase = $manager->managedDatabases()->create([
     'name' => 'unique_name',
-    'system_connection' => 'sqlite'
+    'system_connection' => 'system_sqlite'
     'template_connection' => 'managed_sqlite',
     'type' => 'sqlite', 
 ]);
