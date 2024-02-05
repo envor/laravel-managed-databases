@@ -2,9 +2,9 @@
 
 namespace Envor\ManagedDatabases;
 
+use Envor\ManagedDatabases\Commands\ManagedDatabasesCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Envor\ManagedDatabases\Commands\ManagedDatabasesCommand;
 
 class ManagedDatabasesServiceProvider extends PackageServiceProvider
 {

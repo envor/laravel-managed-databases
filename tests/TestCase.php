@@ -2,9 +2,9 @@
 
 namespace Envor\ManagedDatabases\Tests;
 
+use Envor\ManagedDatabases\ManagedDatabasesServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Envor\ManagedDatabases\ManagedDatabasesServiceProvider;
 
 class TestCase extends Orchestra
 {
