@@ -34,6 +34,18 @@ return [
 ```
 
 ## Usage
+
+```php
+$manager = User::first();
+
+$managedDatabase = $manager->managedDatabases()->create([
+    'name' => 'unique_name',
+    'system_connection' => 'sqlite'
+    'template_connection' => 'managed_sqlite'
+    'type' => 'sqlite', 
+]);
+```
+
 [configure()](#configure)
 
 ### #`configure()`
@@ -41,6 +53,7 @@ return [
 The `configure()` method configures the database as the default.
 
 ```php
+
 
 ```
 

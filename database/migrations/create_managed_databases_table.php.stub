@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('system_connection')->default('sqlite');
             $table->string('template_connection')->default('managed_sqlite');
             $table->foreignId('manager_id');
-            $table->string('maanger_type');
+            $table->string('manger_type');
             $table->string('type')->default('sqlite');
             $table->timestamps();
         });
