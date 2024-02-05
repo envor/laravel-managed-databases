@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Envor\ManagedDatabases\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class ManagedDatabasesCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-managed-databases';
 
     public $description = 'My command';
 
