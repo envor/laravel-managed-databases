@@ -1,6 +1,6 @@
 <?php
 
-use Envor\ManagedDatabases\Facades\ManagedDatabases;
+use Envor\ManagedDatabases\ManagedDatabases;
 use Envor\ManagedDatabases\Tests\Fixtures\ManagedDatabase;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

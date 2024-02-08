@@ -1,4 +1,4 @@
-# This is my package laravel-managed-databases
+# A small package for managing multiple databases and their connections at runtime using laravel tools
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/envor/laravel-managed-databases.svg?style=flat-square)](https://packagist.org/packages/envor/laravel-managed-databases)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/envor/laravel-managed-databases/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/envor/laravel-managed-databases/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -12,11 +12,12 @@ You can install the package via composer:
 ```bash
 composer require envor/laravel-managed-databases
 ```
-- Create a new connection config for the newly created database by cloning the `$managerConnection` config
+
 ## Usage
 
 [createDatabase()](#manageddatabasescreatedatabase)    
-[runOnDatabase()](#manageddatabasesrunondatabase)
+[runOnDatabase()](#manageddatabasesrunondatabase)    
+[configureDatabase](#manageddatabasesconfiguredatabase)
 
 ### #`ManagedDatabases::createDatabase()`
 
@@ -70,6 +71,32 @@ php artisan managed-databases:run "migrate:fresh --seed" --database=":memory:" -
 ```
 
 This will run your migrations and seeders harmlessly against an in-memory sqlite database. A great way to quickly check if they can run without errors.
+
+### #`ManagedDatabases::configureDatabase()`
+
+The `configureDatabase()` method will set the given database as the default on on a brand new connection modeled after the given `$managerConnection`
+
+```php
+use Envor\ManagedDatabases\ManagedDatabases;
+
+ManagedDatabases::createDatabase('database2', 'sqlite');
+
+ManagedDatabases::useDatabase('database2', 'sqlite');
+
+config('database.default');
+
+// database2
+
+config('database.connections.database2')
+
+// [
+//     "driver" => "sqlite",
+//     "url" => null,
+//     "database" => "/home/forge/mysite.com/storage/app/managed_database2.sqlite",
+//     "prefix" => "",
+//     "foreign_key_constraints" => true,
+// ]
+```
 
 ## Testing
 

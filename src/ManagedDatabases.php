@@ -48,17 +48,17 @@ class ManagedDatabases
         return app()->bind(MakesDatabaseName::class, $callback);
     }
 
-    public static function makeDatabaseName($database, $managerConnection = 'manager_sqlite'): string
+    public static function makeDatabaseName($database, $managerConnection = 'manager_sqlite', $disk = 'local'): string
     {
-        return app(MakesDatabaseName::class)($database, $managerConnection);
+        return app(MakesDatabaseName::class)($database, $managerConnection, $disk);
     }
 
-    public static function createsConnectionConfig(string|Stringable $database, $managerConnection = 'manager_sqlite')
+    public static function createsConnectionConfig(string|Stringable $database, $managerConnection = 'manager_sqlite', $disk = 'local'): string
     {
 
         config(['database.connections.'.$database => array_merge(
             config('database.connections.'.$managerConnection), [
-                'database' => static::makeDatabaseName($database, $managerConnection),
+                'database' => static::makeDatabaseName($database, $managerConnection, $disk),
             ])]);
 
         return $database;
@@ -87,7 +87,7 @@ class ManagedDatabases
         config(['database.connections.'.$database => null]);
     }
 
-    public static function createDatabase($database, $managerConnection = 'manager_sqlite')
+    public static function createDatabase($database, $managerConnection = 'manager_sqlite', $disk = 'local')
     {
         static::cacheCurrentConnection();
 
@@ -97,7 +97,7 @@ class ManagedDatabases
             throw new UnsupportedDriver('The driver '.$driver.' is not supported by the '.$macro.' macro');
         }
 
-        $successfullyCreated = Schema::createDatabaseIfNotExists(static::makeDatabaseName($database, $managerConnection));
+        $successfullyCreated = Schema::createDatabaseIfNotExists(static::makeDatabaseName($database, $managerConnection, $disk));
 
         static::restoreCurrentConnection();
     }

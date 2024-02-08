@@ -11,7 +11,7 @@ class MakesDatabaseName
     {
         $databaseName = str()->of($database)->start('managed_');
 
-        if (config('database.connections.'.$managerConnection.'.driver') === 'sqlite') {
+        if (config('database.connections.'.$managerConnection.'.driver') === 'sqlite' && $database !== ':memory:') {
             $databaseName = Storage::disk($disk)->path((string) $databaseName->finish('.sqlite'));
         }
 

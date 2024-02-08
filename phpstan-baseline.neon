@@ -11,11 +11,6 @@ parameters:
 			path: tests/ArchTest.php
 
 		-
-			message: "#^Call to an undefined static method Envor\\\\ManagedDatabases\\\\Facades\\\\ManagedDatabases\\:\\:runOnDatabase\\(\\)\\.$#"
-			count: 1
-			path: tests/CreateDatabaseTest.php
-
-		-
 			message: "#^Call to an undefined static method Envor\\\\ManagedDatabases\\\\Tests\\\\Fixtures\\\\ManagedDatabase\\:\\:create\\(\\)\\.$#"
 			count: 1
 			path: tests/CreateDatabaseTest.php

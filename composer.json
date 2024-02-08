@@ -1,6 +1,6 @@
 {
     "name": "envor/laravel-managed-databases",
-    "description": "This is my package laravel-managed-databases",
+    "description": "A small package for managing multiple databases and their connections at runtime using laravel tools.",
     "keywords": [
         "envor",
         "laravel",
