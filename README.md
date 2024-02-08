@@ -1,4 +1,4 @@
-# A small package for managing multiple databases and their connections at runtime using laravel tools
+## A small package for managing multiple databases and their connections at runtime using laravel tools
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/envor/laravel-managed-databases.svg?style=flat-square)](https://packagist.org/packages/envor/laravel-managed-databases)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/envor/laravel-managed-databases/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/envor/laravel-managed-databases/actions?query=workflow%3Arun-tests+branch%3Amain)
