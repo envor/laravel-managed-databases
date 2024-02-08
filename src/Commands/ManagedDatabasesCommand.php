@@ -14,8 +14,13 @@ class ManagedDatabasesCommand extends Command
 
     public function handle(): int
     {
-        $artisanCommand = function () {
-            return Artisan::call($this->argument('artisanCommand'), [], $this->output);
+
+        if (! $artisanCommand = $this->argument('artisanCommand')) {
+            $artisanCommand = $this->ask('Which artisan command do you want to run for '.$this->option('database').'?');
+        }
+
+        $artisanCommandCallback = function () use ($artisanCommand) {
+            return Artisan::call($artisanCommand, [], $this->output);
         };
 
         return ManagedDatabases::runOnDatabase(
