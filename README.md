@@ -12,50 +12,64 @@ You can install the package via composer:
 ```bash
 composer require envor/laravel-managed-databases
 ```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="managed-databases-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="managed-databases-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
+- Create a new connection config for the newly created database by cloning the `$managerConnection` config
 ## Usage
 
-```php
-$manager = User::first();
+[createDatabase()](#manageddatabasescreatedatabase)    
+[runOnDatabase()](#manageddatabasesrunondatabase)
 
-$managedDatabase = $manager->managedDatabases()->create([
-    'name' => 'unique_name',
-    'system_connection' => 'system_sqlite'
-    'template_connection' => 'managed_sqlite',
-    'type' => 'sqlite', 
-]);
+### #`ManagedDatabases::createDatabase()`
+
+The `createDatabase()` method will
+
+- Cache the current default database connection config
+- Set the connection to the `$managerConnection`
+- Purge the connection and reconnect
+- Create the physical database
+- Purge the connection
+- Restore original default connection
+- Purge and reconnect
+
+> [!TIP]
+> The `$managerConnection` must exist and be a configured database connection.    
+> This package creates a few defaults: `manager_sqlite`, `manager_mysql` and `manager_mariadb`.    
+> They are bootstrapped into memory by cloning the default configs for `sqlite`, `mysql` and `mariadb`.
+
+```php
+$managerConnection = 'manager_sqlite';
+$name = 'database'
+
+ManagedDatabases::createDatabase($name, $managerConnection);
 ```
 
-[configure()](#configure)
+### #`ManagedDatabases::runOnDatabase()`
 
-### #`configure()`
+The `runOnDatabase()` method will connect the given `$database` using a new connection created with the credentials and options from the given `$managerConnection`, execute the given `$callback`, then finally, restore the original default database connection.
 
-The `configure()` method configures the database as the default.
+- Cache the current default database connection config
+- Create a new connection config for the database by cloning the `$managerConnection` config
+- Set the database as default and connect to it
+- Run the given callback
+- Purge the connection
+- Restore original default connection
+- Purge and reconnect
 
 ```php
-
-
+ManagedDatabases::runOnDatabase(
+    $database = 'database', 
+    $callback = fn() => Artisan::call('migrate', ['--force' => true]), 
+    $managerConnection = 'manager_sqlite'
+);
 ```
+
+The package also includes an `artisan` wrapper for the `runOnDatabase()` method called `managed-databases:run`.
+The simplest and most harmless way to check it out is by pasting the following command into your terminal:
+
+```bash
+php artisan managed-databases:run "migrate:fresh --seed" --database=":memory:" --managerConnection="sqlite"
+```
+
+This will run your migrations and seeders harmlessly against an in-memory sqlite database. A great way to quickly check if they can run without errors.
 
 ## Testing
 

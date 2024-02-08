@@ -17,16 +17,15 @@ class ManagedDatabasesServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-managed-databases')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-managed-databases_table')
-            ->runsMigrations(/** todo: ignore option */)
+            // ->hasConfigFile()
+            // ->hasViews()
+            // ->hasMigration('create_laravel-managed-databases_table')
+            // ->runsMigrations(/** todo: ignore option */)
             ->hasCommand(ManagedDatabasesCommand::class);
     }
 
     public function packageRegistered()
     {
-        ManagedDatabases::configureManagedConnections();
-        ManagedDatabases::configureSystemConnections();
+        ManagedDatabases::configureManagerConnections();
     }
 }

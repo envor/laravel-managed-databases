@@ -2,18 +2,26 @@
 
 namespace Envor\ManagedDatabases\Commands;
 
+use Envor\ManagedDatabases\ManagedDatabases;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class ManagedDatabasesCommand extends Command
 {
-    public $signature = 'laravel-managed-databases';
+    public $signature = 'managed-databases:run {artisanCommand} {--database= : The managed database to run the command on} {--managerConnection=manager_sqlite}';
 
-    public $description = 'My command';
+    public $description = 'Run an artisan command on a managed database';
 
     public function handle(): int
     {
-        $this->comment('All done');
+        $artisanCommand = function () {
+            return Artisan::call($this->argument('artisanCommand'), [], $this->output);
+        };
 
-        return self::SUCCESS;
+        return ManagedDatabases::runOnDatabase(
+            $this->option('database'),
+            $artisanCommand,
+            $this->option('managerConnection'),
+        );
     }
 }
