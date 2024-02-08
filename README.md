@@ -17,7 +17,7 @@ composer require envor/laravel-managed-databases
 
 [createDatabase()](#manageddatabasescreatedatabase)    
 [runOnDatabase()](#manageddatabasesrunondatabase)    
-[configureDatabase](#manageddatabasesconfiguredatabase)
+[configureDatabase()](#manageddatabasesconfiguredatabase)
 
 ### #`ManagedDatabases::createDatabase()`
 
