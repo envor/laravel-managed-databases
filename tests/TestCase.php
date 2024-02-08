@@ -4,20 +4,10 @@ namespace Envor\ManagedDatabases\Tests;
 
 use Envor\ManagedDatabases\ManagedDatabasesServiceProvider;
 use Envor\SchemaMacros\SchemaMacrosServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Envor\\ManagedDatabases\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
     protected function getPackageProviders($app)
     {
         return [
