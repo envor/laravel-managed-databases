@@ -1,0 +1,31 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined static method Illuminate\\\\Support\\\\Facades\\\\Schema\\:\\:createDatabaseIfNotExists\\(\\)\\.$#"
+			count: 1
+			path: src/ManagedDatabases.php
+
+		-
+			message: "#^Call to an undefined method Pest\\\\PendingCalls\\\\TestCall\\:\\:expect\\(\\)\\.$#"
+			count: 1
+			path: tests/ArchTest.php
+
+		-
+			message: "#^Call to an undefined static method Envor\\\\ManagedDatabases\\\\Facades\\\\ManagedDatabases\\:\\:runOnDatabase\\(\\)\\.$#"
+			count: 1
+			path: tests/CreateDatabaseTest.php
+
+		-
+			message: "#^Call to an undefined static method Envor\\\\ManagedDatabases\\\\Tests\\\\Fixtures\\\\ManagedDatabase\\:\\:create\\(\\)\\.$#"
+			count: 1
+			path: tests/CreateDatabaseTest.php
+
+		-
+			message: "#^Access to an undefined property Envor\\\\ManagedDatabases\\\\Tests\\\\Fixtures\\\\ManagedDatabase\\:\\:\\$name\\.$#"
+			count: 4
+			path: tests/Fixtures/ManagedDatabase.php
+
+		-
+			message: "#^Access to an undefined property Envor\\\\ManagedDatabases\\\\Tests\\\\Fixtures\\\\ManagedDatabase\\:\\:\\$type\\.$#"
+			count: 1
+			path: tests/Fixtures/ManagedDatabase.php

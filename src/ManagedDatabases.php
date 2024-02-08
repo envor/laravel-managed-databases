@@ -93,7 +93,7 @@ class ManagedDatabases
 
         static::setDefaultConnection($managerConnection);
 
-        if(!in_array($driver = config('database.connections.'.$managerConnection.'.driver'), SchemaMacros::supportedDrivers($macro = 'createDatabaseIfNotExists')) ) {
+        if (! in_array($driver = config('database.connections.'.$managerConnection.'.driver'), SchemaMacros::supportedDrivers($macro = 'createDatabaseIfNotExists'))) {
             throw new UnsupportedDriver('The driver '.$driver.' is not supported by the '.$macro.' macro');
         }
 
