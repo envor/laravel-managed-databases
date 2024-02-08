@@ -43,6 +43,8 @@ $managerConnection = 'manager_sqlite';
 $name = 'database'
 
 ManagedDatabases::createDatabase($name, $managerConnection);
+
+// database
 ```
 
 ### #`ManagedDatabases::runOnDatabase()`
