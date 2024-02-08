@@ -37,6 +37,8 @@ The `createDatabase()` method will
 > They are bootstrapped into memory by cloning the default configs for `sqlite`, `mysql` and `mariadb`.
 
 ```php
+use Envor\ManagedDatabases\ManagedDatabases;
+
 $managerConnection = 'manager_sqlite';
 $name = 'database'
 
@@ -56,6 +58,8 @@ The `runOnDatabase()` method will connect the given `$database` using a new conn
 - Purge and reconnect
 
 ```php
+use Envor\ManagedDatabases\ManagedDatabases;
+
 ManagedDatabases::runOnDatabase(
     $database = 'database', 
     $callback = fn() => Artisan::call('migrate', ['--force' => true]), 
