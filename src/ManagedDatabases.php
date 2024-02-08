@@ -97,7 +97,7 @@ class ManagedDatabases
             throw new UnsupportedDriver('The driver '.$driver.' is not supported by the '.$macro.' macro');
         }
 
-        if(Schema::databaseExists(static::makeDatabaseName($database, $managerConnection, $disk))) {
+        if (Schema::databaseExists(static::makeDatabaseName($database, $managerConnection, $disk))) {
             $database = (string) $database.'_1';
             static::createDatabase($database, $managerConnection, $disk);
         }
