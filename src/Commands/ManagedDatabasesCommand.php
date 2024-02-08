@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class ManagedDatabasesCommand extends Command
 {
-    public $signature = 'managed-databases:run {artisanCommand} {--database= : The managed database to run the command on} {--managerConnection=manager_sqlite}';
+    public $signature = 'managed-databases:run {artisanCommand?} {--database= : The managed database to run the command on} {--managerConnection=manager_sqlite}';
 
     public $description = 'Run an artisan command on a managed database';
 
@@ -25,7 +25,7 @@ class ManagedDatabasesCommand extends Command
 
         return ManagedDatabases::runOnDatabase(
             $this->option('database'),
-            $artisanCommand,
+            $artisanCommandCallback,
             $this->option('managerConnection'),
         );
     }
