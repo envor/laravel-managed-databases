@@ -26,7 +26,7 @@ class ManagedDatabasesServiceProvider extends PackageServiceProvider
 
     public function packageBooted()
     {
-        if($this->app->runningUnitTests()){
+        if ($this->app->runningUnitTests()) {
             ManagedDatabases::configureTestConnections();
         }
     }
