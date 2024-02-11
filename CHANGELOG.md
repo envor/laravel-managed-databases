@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-managed-databases` will be documented in this file.
 
+## v1.1.0 - 2024-02-08
+
+### What's Changed
+
+* add one if exists by @inmanturbo in https://github.com/envor/laravel-managed-databases/pull/5
+* patch by @inmanturbo in https://github.com/envor/laravel-managed-databases/pull/6
+
+**Full Changelog**: https://github.com/envor/laravel-managed-databases/compare/v1.0.2...v1.1.0
+
 ## v1.0.2 - 2024-02-08
 
 ### What's Changed

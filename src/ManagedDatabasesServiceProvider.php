@@ -24,6 +24,13 @@ class ManagedDatabasesServiceProvider extends PackageServiceProvider
             ->hasCommand(ManagedDatabasesCommand::class);
     }
 
+    public function packageBooted()
+    {
+        if ($this->app->runningUnitTests()) {
+            ManagedDatabases::configureTestConnections();
+        }
+    }
+
     public function packageRegistered()
     {
         ManagedDatabases::configureManagerConnections();
