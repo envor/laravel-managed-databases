@@ -15,14 +15,14 @@ class ManagedDatabases
 
 public static function configureTestConnections()
 {
-config('database.connections.testing_platform'=>
-array_merge(config('database.connections.sqlite'), ['database'=> ':memory:']);
-);
+config(['database.connections.testing_platform' =>
+array_merge(config('database.connections.sqlite'), ['database'=> ':memory:'])
+]);
 
 
-config('database.connections.testing_app'=>
-array_merge(config('database.connections.sqlite'), ['database'=> ':memory:']);
-);
+config(['database.connections.testing_app'=>
+array_merge(config('database.connections.sqlite'), ['database'=> ':memory:'])
+]);
 }
     public static function configureManagerConnections()
     {
