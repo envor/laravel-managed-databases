@@ -84,7 +84,6 @@ class ManagedDatabases
         return $database;
     }
 
-
     public static function restoreCurrentConnection()
     {
         DB::purge('current');
