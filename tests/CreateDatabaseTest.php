@@ -36,5 +36,4 @@ it('can create a database', function () {
     expect(ManagedDatabases::runOnDatabase('md_test', function () {
         return Schema::hasTable('migrations');
     }))->toBeTrue();
-
 });

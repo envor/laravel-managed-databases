@@ -73,6 +73,17 @@ class ManagedDatabases
         return $database;
     }
 
+    public static function createsInMemoryConnectionConfig(string|Stringable $database): string
+    {
+
+        config(['database.connections.'.$database => array_merge(
+            config('database.connections.manager_sqlite'), [
+                'database' => ':memory:',
+            ])]);
+
+        return $database;
+    }
+
     public static function restoreCurrentConnection()
     {
         DB::purge('current');
@@ -142,9 +153,16 @@ class ManagedDatabases
         return $result;
     }
 
-    public static function configureDatabase($database, $managerConnection = 'manager_sqlite')
+    public static function configureDatabase($database, $managerConnection = 'manager_sqlite', $disk = 'local')
     {
-        $database = static::createsConnectionConfig($database, $managerConnection);
+        $database = static::createsConnectionConfig($database, $managerConnection, $disk);
+
+        static::setDefaultConnection($database);
+    }
+
+    public static function configureInMemoryDatabase($database)
+    {
+        $database = static::createsInMemoryConnectionConfig($database);
 
         static::setDefaultConnection($database);
     }
