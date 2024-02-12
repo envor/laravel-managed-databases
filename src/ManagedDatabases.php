@@ -166,4 +166,9 @@ class ManagedDatabases
 
         static::setDefaultConnection($database);
     }
+
+    public static function createInMemoryDatabase($database)
+    {
+        $database = static::createsInMemoryConnectionConfig($database);
+    }
 }
